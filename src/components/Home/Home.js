@@ -27,6 +27,21 @@ class Home extends Component {
         this.fetchItems(endPoint);
     }
 
+    handleSearch = (searchTerm) => {
+        if(searchTerm === '')
+            return;
+
+        console.log(searchTerm);
+
+        let endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+        this.setState({
+            movies: [],
+            loading: true,
+            searchTerm
+        });
+        this.fetchItems(endPoint);
+    }
+
     fetchItems = (endPoint) => {
         fetch(endPoint)
             .then(res => res.json())
@@ -34,7 +49,11 @@ class Home extends Component {
                 console.log(res);
                 this.setState({
                     movies: [...this.state.movies, ...res.results],
-                    welcomeImage: this.state.welcomeImage || res.results[0],
+                    welcomeImage: this.state.welcomeImage || {
+                        backdrop_path: res.results[1].backdrop_path,
+                        overview: res.results[1].overview,
+                        title: res.results[1].title
+                    },
                     loading: false,
                     currentPage: res.page,
                     totalPages: res.total_pages
@@ -59,13 +78,41 @@ class Home extends Component {
 
     render(){
         return(
-            <div>
-                <WelcomeImage />
-                <SearchBar />
-                <Grid />
-                <Thumbnail />
+            <div className="home-container">
+                {this.state.welcomeImage ?
+                    <div className="welcomeImage-searchBar-container">
+                    <WelcomeImage 
+                        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${this.state.welcomeImage.backdrop_path}`}
+                        //image='https://image.tmdb.org/t/p/w1280/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg'
+                        title={this.state.welcomeImage.title}
+                        //title='Avengers: End Game'
+                        text={this.state.welcomeImage.overview}
+                        //text="After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store."
+                    />
+                    <SearchBar handleSearch={this.handleSearch}/>
+                    </div>
+                : null}
+                <div className="home-grid-container">
+                    <Grid 
+                        header={this.state.searchTerm ? 'Search Results' : 'Popular Movies'}
+                        loading={this.state.loading}                        
+                    >
+                        {
+                            this.state.movies.map((ele, i) => {
+                                return <Thumbnail 
+                                            key={ele.id}
+                                            clickable={true}
+                                            image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/film-placeholder.jpg'}
+                                            movieId={ele.id}
+                                            movieName={ele.original_title}
+
+                                            />
+                            })
+                        }
+                    </Grid>
+                </div>
+                <LoadMore  text="Load More" handleLoadMore={this.loadMore}/>
                 <Spinner />
-                <LoadMore />
             </div>
         );
     }

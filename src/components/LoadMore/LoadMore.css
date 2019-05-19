@@ -1,0 +1,17 @@
+.loadMore-container{
+    width: 80%;
+    text-align: center;
+    background: #34495e;
+    color: #fff;
+    margin:0 auto;
+    padding: 5px;
+    transition: all linear 0.4s;
+}
+.loadMore-container:hover {
+    background: #212121;
+    cursor: pointer;
+}
+.loadMore-container p{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
