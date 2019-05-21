@@ -7,6 +7,7 @@ import Grid from '../Grid/Grid';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import LoadMore from '../LoadMore/LoadMore';
 import Spinner from '../Spinner/Spinner';
+import NoResults from '../NoResults/NoResults';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
 class Home extends Component {
@@ -28,12 +29,15 @@ class Home extends Component {
     }
 
     handleSearch = (searchTerm) => {
-        if(searchTerm === '')
-            return;
+        
+        let endPoint;
 
+        if(searchTerm === ''){
+            endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
+        } else {
+            endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+        }
         console.log(searchTerm);
-
-        let endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
         this.setState({
             movies: [],
             loading: true,
@@ -102,7 +106,7 @@ class Home extends Component {
                                 return <Thumbnail 
                                             key={ele.id}
                                             clickable={true}
-                                            image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/film-placeholder.jpg'}
+                                            image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/nothumbnail.jpg'}
                                             movieId={ele.id}
                                             movieName={ele.original_title}
 
@@ -111,8 +115,12 @@ class Home extends Component {
                         }
                     </Grid>
                 </div>
-                <LoadMore  text="Load More" handleLoadMore={this.loadMore}/>
-                <Spinner />
+                {this.state.loading ? <Spinner /> : null}
+                {(this.state.movies.length && this.state.currentPage <= this.state.totalPages && !this.state.loading) ? 
+                    <LoadMore  text="Load More" handleLoadMore={this.loadMore}/> : null
+                }
+                {!this.state.loading && !this.state.movies.length ? <NoResults image="https://image.flaticon.com/icons/svg/138/138366.svg" text="Nothing here fellas. Move on!"/> : null}
+                                
             </div>
         );
     }

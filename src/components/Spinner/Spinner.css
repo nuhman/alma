@@ -1,0 +1,9 @@
+.spinner-container{
+    min-width: 100%;
+}
+.spinner-container img{
+    width: 60px;
+    height:60px;
+    display:block;
+    margin:0 auto;
+}

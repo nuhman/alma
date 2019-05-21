@@ -1,8 +1,13 @@
 .home-container{
     border:0;
     margin: 0; 
+    margin-bottom: 100px;
 }
 .welcomeImage-searchBar-container{
     border:0;
     margin:0;
+}
+
+Spinner, LoadMore{
+    margin-bottom: 50px;
 }
