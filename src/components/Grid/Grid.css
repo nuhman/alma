@@ -7,13 +7,13 @@
 .grid-content{
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 5px;
+  padding: 2px;
 }
 .grid-element{
     margin: 0 auto;
     width:250px;
     height: 500px;
-    padding: 5px;
+    padding: 2px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -22,7 +22,7 @@
     .grid-content{
         display: grid;
         grid-template-columns: auto auto;
-        padding: 5px;
+        padding: 2px;
       }
   }
 
@@ -33,6 +33,6 @@
     .grid-content{
         display: grid;
         grid-template-columns: auto;
-        padding: 5px;
+        padding: 2px;
       }
   }

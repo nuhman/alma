@@ -107,8 +107,8 @@ class Home extends Component {
                                             key={ele.id}
                                             clickable={true}
                                             image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/nothumbnail.jpg'}
-                                            movieId={ele.id}
-                                            movieName={ele.original_title}
+                                            itemId={ele.id}
+                                            itemName={ele.original_title}
 
                                             />
                             })
