@@ -4,7 +4,7 @@ import './Thumbnail.css';
 
 const Thumbnail = (props) => {
     return(
-        <div className="thumbnail-container">
+        <div className="thumbnail-container"> 
             {props.clickable ? 
                 <Link to={{pathname: `/${props.itemId}`, itemName: `${props.itemName}`}}>
                     <img src={props.image} alt={props.itemName} />
