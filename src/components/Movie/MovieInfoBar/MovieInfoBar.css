@@ -1,0 +1,17 @@
+.movieInfoBar-container{
+    padding: 16px;
+}
+.movieInfoBar-container > *{
+    margin-bottom: 8px;
+    margin-top:8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.movieInfoBar-container div{
+    display: flex;
+    align-items: center;
+}
+.movieInfoBar-container div img{
+    width: 40px;
+    height: 40px;
+}

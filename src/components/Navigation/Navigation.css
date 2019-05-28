@@ -1,0 +1,22 @@
+.navigation-container{
+    width:100%;
+    height:50px;
+    background: hsl(204, 64%, 44%);
+    color: #fff;
+    
+}
+.navigation-container > *{
+    display: inline-block;
+    margin-left:8px;
+    overflow: hidden;
+}
+.navigation-link{
+    color: #fff;
+    text-decoration: none;
+}
+.navigation-title{
+    display: inline-block;
+    width: 220px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

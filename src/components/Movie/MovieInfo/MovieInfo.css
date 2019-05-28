@@ -1,0 +1,101 @@
+.movieInfo-container{
+    width:  100%;
+    height: 100%;
+    
+}
+.movieInfo-image{
+    height: 500px;
+    max-width: 100%;
+}
+.movieInfo-image img{
+    max-height: 100%;
+    min-width: 100%;
+}
+.movieInfo-content{
+    background: #2980b9;
+    max-width: 100%;
+    padding:5px 16px;
+    color: #fff;
+}
+.movieInfo-title-genre .movieInfo-genre > *{
+    display: inline-block;
+    margin-right: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    padding:5px;
+    border-radius: 6px;
+}
+.movieInfo-tagline{
+    font-style: italic;
+}
+.movieInfo-imdb{
+    width: 100%;
+}
+.movieInfo-item-title{
+    margin-top:16px;
+    margin-left: 16px;
+    font-size:0.9em;
+    font-weight: bolder;
+}
+.movieInfo-imdb-rating-div{
+    display: flex;
+    flex-direction: column;
+}
+.movieInfo-imdb-bardiv{
+    margin: 10px auto;
+    width:50%;
+    border: 2px solid #212121;
+    height:20px;
+    border-radius: 4px;
+}
+.movieInfo-imdb-bar{
+    background: lightgreen;
+    width: 10%;
+    height: 100%;
+    transition: width 3s linear;
+}
+.movieInfo-imdb-bardiv, .movieInfo-imdb-rating{
+    margin: auto;
+}
+
+.movieInfo-plot-content{
+    margin:0px 16px;
+    
+}
+
+.movieInfo-directors{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 16px;
+    grid-row-gap: 8px;
+}
+
+
+.movieInfo-directors-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 130px;
+  }
+  .movieInfo-directors-card img{
+      width:100%;
+      height: 60%;
+  }
+  
+  .movieInfo-directors-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .movieInfo-directors-name {
+    width:100%;
+    display: inline-block;
+    text-align: center;
+    
+  }
+
+  .movieInfo-directors-name h4{
+      width: 130px;
+      overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

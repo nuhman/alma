@@ -58,11 +58,24 @@ class Movie extends Component {
     }
 
     render(){
+        if(!this.state.movie)
+            return <div></div>;
         return(
             <div>
-                <Navigation />
-                <MovieInfo />
-                <MovieInfoBar />
+                <Navigation movieName={this.state.movie.title}/>
+                <MovieInfo image={this.state.movie.poster_path} 
+                    title={this.state.movie.title}
+                    original_title={this.state.movie.original_title}
+                    genres={this.state.movie.genres}
+                    tagline={this.state.movie.tagline}
+                    rating={this.state.movie.vote_average}
+                    overview={this.state.movie.overview}
+                    directors={this.state.directors}
+                    />
+                <MovieInfoBar duration={this.state.movie.runtime} 
+                            revenue={this.state.movie.revenue} 
+                            budget={this.state.movie.budget}
+                    />
                 <Actor />
                 <Spinner />
             </div>
