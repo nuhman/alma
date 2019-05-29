@@ -6,6 +6,7 @@ import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
 import Grid from '../Grid/Grid';
 import Actor from '../Actor/Actor';
 import Spinner from '../Spinner/Spinner';
+import Rating from '../Rating/Rating';
 
 
 class Movie extends Component {
@@ -72,13 +73,17 @@ class Movie extends Component {
                     rating={this.state.movie.vote_average}
                     overview={this.state.movie.overview}
                     directors={this.state.directors}
+                    duration={this.state.movie.runtime} 
+                    revenue={this.state.movie.revenue} 
+                    budget={this.state.movie.budget}
                     />
-                <MovieInfoBar duration={this.state.movie.runtime} 
+                {/* <MovieInfoBar duration={this.state.movie.runtime} 
                             revenue={this.state.movie.revenue} 
                             budget={this.state.movie.budget}
-                    />
+                    /> */}
                 <Actor actors={this.state.actors}/>
                 <Spinner />
+                
             </div>
         );
     }

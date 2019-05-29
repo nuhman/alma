@@ -10,6 +10,7 @@
 .movieInfoBar-container div{
     display: flex;
     align-items: center;
+    margin: 0 auto;
 }
 .movieInfoBar-container div img{
     width: 30px;

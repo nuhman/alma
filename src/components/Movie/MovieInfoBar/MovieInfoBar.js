@@ -4,10 +4,13 @@ import './MovieInfoBar.css';
 
 
 const convertMinToHoursAndMin = (min) => {
+    console.log("min is", min);
     let hours = (min / 60);
     let rhours = Math.floor(hours);
     let minutes = (hours - rhours) * 60;
     let rminutes = Math.round(minutes);
+    if(!min)
+        return "N.A";
     if(rhours < 1)
         return rminutes + " minutes";
     if(rhours > 1)
@@ -17,7 +20,7 @@ const convertMinToHoursAndMin = (min) => {
 
 
 const validateBudgetOrRevenue = (curr) => {
-    if(Number(curr) <= 0)
+    if(!curr || Number(curr) <= 0)
         return "N.A";
     return "$" + curr;
 }

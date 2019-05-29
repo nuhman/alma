@@ -1,6 +1,9 @@
 import React from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../../conifg';
 import Thumbnail from '../../Thumbnail/Thumbnail';
+import Rating from '../../Rating/Rating';
+import MovieInfoBar from '../MovieInfoBar/MovieInfoBar';
+
 
 import './MovieInfo.css';
 
@@ -47,13 +50,14 @@ const MovieInfo = (props) => {
             </div>
             <div className="movieInfo-imdb">
                 <div className="movieInfo-item-title">IMDB RATING</div>
-                <div className="movieInfo-imdb-rating-div">
+                <Rating rating={props.rating}/>
+                {/* <div className="movieInfo-imdb-rating-div">
                     <div className="movieInfo-imdb-rating">{props.rating * 10}%</div>
                     <div className="movieInfo-imdb-bardiv">
                         <div className="movieInfo-imdb-bar" style={{width: `${props.rating * 10}%`}}>
                         </div>
                     </div>
-                </div>
+                </div> */}
              </div>
 
             <div className="movieInfo-plot">
@@ -62,6 +66,11 @@ const MovieInfo = (props) => {
                     <p>{props.overview}</p>
                 </div>
             </div>
+
+            <MovieInfoBar duration={props.duration} 
+                            revenue={props.revenue} 
+                            budget={props.budget}
+                    />
 
             <div className="movieInfo-item-title">DIRECTORS</div>
             <div className="movieInfo-directors">
