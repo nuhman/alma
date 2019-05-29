@@ -11,7 +11,7 @@ const getGenre = (genreArray) => {
 const getDirectors = (directorsArray) => {
     return directorsArray.map(directorsObj => (
         <div className="movieInfo-directors-card" key={directorsObj.id}> 
-            <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${directorsObj.profile_path}`} alt="Director" />
+            <img src={directorsObj.profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${directorsObj.profile_path}` : './images/nothumbnail.jpg'} alt="Director" />
             <div className="movieInfo-directors-name">
                 <h4><b>{directorsObj.name}</b></h4> 
             </div>
@@ -25,6 +25,12 @@ return [<p>{title}</p>, <p>({originalTitle})</p>];
     return <p>{title}</p>;
 }
 
+const getTagline = (tagline) => {
+    if(tagline)
+        return `“${tagline}”`;
+    return null;
+}
+
 const MovieInfo = (props) => {
     let imageUrl = `${IMAGE_BASE_URL}${POSTER_SIZE}${props.image}`;
     return(
@@ -35,7 +41,7 @@ const MovieInfo = (props) => {
             <div className="movieInfo-content">
                 <div className="movieInfo-title-genre">
                     <div>{getTitle(props.title,  props.original_title)}</div>
-                    <div className="movieInfo-tagline">“{props.tagline}”</div>
+                    <div className="movieInfo-tagline">{getTagline(props.tagline)}</div>
                     <div className="movieInfo-genre">{getGenre(props.genres)}</div>
                 </div>
             </div>
@@ -60,7 +66,7 @@ const MovieInfo = (props) => {
             <div className="movieInfo-item-title">DIRECTORS</div>
             <div className="movieInfo-directors">
                     {getDirectors(props.directors)}
-            </div>
+            </div> 
 
         </div>
     );

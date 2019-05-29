@@ -45,11 +45,12 @@ class Movie extends Component {
                             .then(res => {
                                 console.log(res);
                                 const directors = res.crew.filter(member => member.job === "Director");
+                                //const actors = res.cast.filter(actor => true);
                                 this.setState({
-                                    actors: res.cast,
                                     directors,
+                                    actors: res.cast,
                                     loading: false
-                                })
+                                }, () => console.log("Actors is", this.state.actors));
                             });
                     });
                 }
@@ -58,7 +59,7 @@ class Movie extends Component {
     }
 
     render(){
-        if(!this.state.movie)
+        if(!this.state.movie || !this.state.directors || !this.state.actors)
             return <div></div>;
         return(
             <div>
@@ -76,7 +77,7 @@ class Movie extends Component {
                             revenue={this.state.movie.revenue} 
                             budget={this.state.movie.budget}
                     />
-                <Actor />
+                <Actor actors={this.state.actors}/>
                 <Spinner />
             </div>
         );

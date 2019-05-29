@@ -63,7 +63,7 @@
 }
 
 .movieInfo-directors{
-    width: 100%;
+    max-width: 100%;
     display: grid;
     grid-template-columns: auto auto;
     padding: 16px;
@@ -78,7 +78,7 @@
   }
   .movieInfo-directors-card img{
       width:100%;
-      height: 60%;
+      min-height: 60%;
   }
   
   .movieInfo-directors-card:hover {
