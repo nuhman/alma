@@ -1,0 +1,46 @@
+.similarMovies-container{
+    max-width: 100%;
+    /* display: grid;
+    grid-template-columns: auto auto;
+    padding: 16px;
+    justify-content: space-between; */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+	-webkit-overflow-scrolling: touch;	
+}
+.similarMovies-container::-webkit-scrollbar {
+    display: none;
+  }
+
+.similarMovies-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 130px;
+    height: 200px;
+    margin-left:16px;
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .similarMovies-card:last-child{
+    margin-right:16px;
+  }
+
+  .similarMovies-card img{
+      width:100%;
+      min-height: 200px;
+      border-radius: 10px 10px 10px 10px;
+  }
+  
+  .similarMovies-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .similarMovies-item-title{
+    margin-top:32px;
+    margin-bottom:16px;
+    margin-left: 16px;
+    font-size:0.9em;
+    font-weight: bolder;
+}

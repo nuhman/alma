@@ -7,6 +7,7 @@ import Grid from '../Grid/Grid';
 import Actor from '../Actor/Actor';
 import Spinner from '../Spinner/Spinner';
 import Rating from '../Rating/Rating';
+import SimilarMovies from '../SimilarMovies/SimilarMovies';
 
 
 class Movie extends Component {
@@ -82,6 +83,7 @@ class Movie extends Component {
                             budget={this.state.movie.budget}
                     /> */}
                 <Actor actors={this.state.actors}/>
+                <SimilarMovies movieId={this.state.movie.id} />
                 <Spinner />
                 
             </div>

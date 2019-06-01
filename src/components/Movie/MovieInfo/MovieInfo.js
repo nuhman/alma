@@ -13,18 +13,23 @@ const getGenre = (genreArray) => {
 
 const getDirectors = (directorsArray) => {
     return directorsArray.map(directorsObj => (
-        <div className="movieInfo-directors-card" key={directorsObj.id}> 
-            <img src={directorsObj.profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${directorsObj.profile_path}` : './images/nothumbnail.jpg'} alt="Director" />
-            <div className="movieInfo-directors-name">
-                <h4><b>{directorsObj.name}</b></h4> 
-            </div>
-        </div>
+        // <div className="movieInfo-directors-card" key={directorsObj.id}> 
+        //     <img src={directorsObj.profile_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${directorsObj.profile_path}` : './images/nothumbnail.jpg'} alt="Director" />
+        //     <div className="movieInfo-directors-name">
+        //         <h4><b>{directorsObj.name}</b></h4> 
+        //     </div>
+        // </div>
+        <div className="director-card" key={directorsObj.id}>
+            <div className="director-card-image" style={{backgroundImage: `url(${directorsObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + directorsObj.profile_path) : './images/nothumbnail.jpg'})`}}></div>		
+            <h4>{directorsObj.name ? directorsObj.name : "N.A"}</h4>
+	    </div>
+
     ));
 }
 
 const getTitle = (title, originalTitle) => {
     if(title !== originalTitle)
-return [<p>{title}</p>, <p>({originalTitle})</p>];
+        return [<p key={title}>{title}</p>, <p key={originalTitle}>({originalTitle})</p>];
     return <p>{title}</p>;
 }
 
@@ -74,7 +79,7 @@ const MovieInfo = (props) => {
 
             <div className="movieInfo-item-title">DIRECTORS</div>
             <div className="movieInfo-directors">
-                    {getDirectors(props.directors)}
+                    {getDirectors(props.directors)} 
             </div> 
 
         </div>

@@ -1,8 +1,12 @@
 .actor-container{
     width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+	  -webkit-overflow-scrolling: touch;	
 }
 
-.actor-content{
+/* .actor-content{
     max-width: 100%;
     display: grid;
     grid-template-columns: auto auto;
@@ -55,4 +59,38 @@
     position: relative;
   }
 
-  
+   */
+
+   .actor-container::-webkit-scrollbar {
+      display: none;
+    }
+
+   .actor-card{	
+    width:100px;
+    height:120px;
+    display: inline-block;
+    margin-left:16px;
+    margin-top:16px;
+  }
+  .actor-card-image{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 50%;
+    width: 100%;
+    padding-top: 100%;
+  }
+  .actor-card h4, .actor-card p{	
+    line-height:15px;
+    margin-top:5px;
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .actor-card p{
+    line-height:12px;
+    margin-top:2px;
+    font-size: 12px;
+  }

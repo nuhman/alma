@@ -62,7 +62,7 @@
     
 }
 
-.movieInfo-directors{
+/* .movieInfo-directors{
     max-width: 100%;
     display: grid;
     grid-template-columns: auto auto;
@@ -102,4 +102,40 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  
+   */
+
+   .movieInfo-directors{
+        max-width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+	    -webkit-overflow-scrolling: touch;	
+   }
+
+   .director-container::-webkit-scrollbar {
+    display: none;
+  }
+
+ .director-card{	
+  width:100px;
+  height:120px;
+  display: inline-block;
+  margin-left:16px;
+  margin-top:16px;
+}
+.director-card-image{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 50%;
+  width: 100%;
+  padding-top: 100%;
+}
+.director-card h4{	
+  line-height:15px;
+  margin-top:5px;
+  text-align: center;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
