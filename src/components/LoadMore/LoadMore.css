@@ -1,4 +1,4 @@
-.loadMore-container{
+/*.loadMore-container{
     width: 80%;
     text-align: center;
     background: #34495e;
@@ -14,4 +14,23 @@
 .loadMore-container p{
     letter-spacing: 2px;
     text-transform: uppercase;
+}*/
+
+.loadMore-container{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width:250px;
+    height:375px;
+    transform: scale(1);
+    transition: transform 1s;
+    display: inline-block;
+}
+.loadMore-container:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.thumbnail-container img { 
+    max-width: 100%; 
+    height: 100%; 
 }

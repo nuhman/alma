@@ -5,12 +5,6 @@ const WelcomeImage = (props) => {
     return (
         <div className="welcomeImage-container"
             style={{
-                // background:
-                //     `linear-gradient(to bottom, rgba(0, 0, 0, 0)) 39%,
-                //     rgba(0, 0, 0, 0) 41%,
-                //     rgba(0, 0, 0, 0.65) 100%),
-                //     url('${props.image}'), 
-                //     #1c1c1c`
                 background: `linear-gradient(180deg,rgba(15, 32, 39,0.4),rgba(44, 83, 100,0.8)), url('${props.image}') no-repeat center center fixed / cover,  #1c1c1c`
             }}
         >

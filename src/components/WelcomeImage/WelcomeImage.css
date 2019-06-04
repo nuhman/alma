@@ -5,6 +5,7 @@
     color: #fff;
     position: relative;
 }
+
 .welcomeImage-content{
     position: absolute;
     bottom: 0;
@@ -12,8 +13,15 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+
 .welcomeImage-text {
     width: 70%;
+}
+.welcomeImage-text h1{
+    font-family: 'Ubuntu', sans-serif;
+}
+.welcomeImage-text p{
+    font-family: 'Ubuntu', monospace;
 }
 
 @media only screen and (max-width: 600px) {

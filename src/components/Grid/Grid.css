@@ -4,19 +4,25 @@
 .grid-header{
     margin-left: 16px;
 }
-.grid-content{
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 2px;
-}
+
 .grid-element{
-    margin: 0 auto;
+    margin-left:16px;
     width:250px;
     height: 500px;
     padding: 2px;
     text-align: center;
     margin-bottom: 20px;
+    display: inline-block;
 }
+.grid-element:last-child{
+    margin-right: 16px;
+}
+/*
+.grid-content{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 2px;
+  }
 
 @media only screen and (max-width: 900px) {
     .grid-content{
@@ -35,4 +41,12 @@
         grid-template-columns: auto;
         padding: 2px;
       }
+  }
+
+  */
+  .grid-content{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
   }

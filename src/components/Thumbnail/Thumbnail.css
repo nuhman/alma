@@ -5,6 +5,7 @@
     height:375px;
     transform: scale(1);
     transition: transform 1s;
+    display: inline-block;
 }
 .thumbnail-container:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);

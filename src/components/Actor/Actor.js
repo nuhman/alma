@@ -27,7 +27,7 @@ const getCast = (castArray) => {
             <div className="actor-card-image" style={{backgroundImage: `url(${castObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + castObj.profile_path) : './images/nothumbnail.jpg'})`}}></div>		
             <h4>{castObj.name ? castObj.name : "N.A"}</h4>
             <p>{castObj.character ? castObj.character : "N.A"}</p>
-	    </div>
+	    </div> 
     ));
 
 

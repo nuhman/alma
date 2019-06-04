@@ -4,7 +4,7 @@ import './LoadMore.css';
 const LoadMore = (props) => {
     return(
         <div className="loadMore-container" onClick={props.handleLoadMore}>
-            <p>{props.text}</p>
+            <img src={props.image} alt="loadmore" />
         </div>
     );
 }
