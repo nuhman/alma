@@ -3,12 +3,13 @@
 }
 .grid-header{
     margin-left: 16px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .grid-element{
     margin-left:16px;
     width:250px;
-    height: 500px;
+    height: 380px;
     padding: 2px;
     text-align: center;
     margin-bottom: 20px;
