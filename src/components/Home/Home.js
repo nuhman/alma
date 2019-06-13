@@ -172,6 +172,9 @@ class Home extends Component {
         let movies = [];
         if(term === "POPULAR") {
             movies = this.state.movies.map((ele, i) => {
+                if(!ele.id) {
+                    return null;
+                }
                 return <Thumbnail 
                             key={ele.id}
                             clickable={true}
@@ -181,6 +184,7 @@ class Home extends Component {
     
                             />
             });
+            movies = movies.filter(ele => ele !== null);
             if(this.state.moviesLoading){
                 movies.push(<Spinner key="spinner_popular" />);
             }
@@ -191,6 +195,9 @@ class Home extends Component {
             }
         } else if(term === "NOW_PLAYING") {
             movies = this.state.nowPlayingMovies.map((ele, i) => {
+                if(!ele.id) {
+                    return null;
+                }
                 return <Thumbnail 
                             key={ele.id}
                             clickable={true}
@@ -200,6 +207,7 @@ class Home extends Component {
     
                             />
             });
+            movies = movies.filter(ele => ele !== null);
             if(this.state.nowPlayingLoading){
                 movies.push(<Spinner key="spinner_nowplaying"/>);
             }
@@ -209,22 +217,26 @@ class Home extends Component {
                 );
             }
         } else if(term === "TOP_RATED") {
+            console.log("HERE IS... ", this.state.topRatedMovies);
             movies = this.state.topRatedMovies.map((ele, i) => {
-                return <Thumbnail 
-                            key={ele.id}
-                            clickable={true}
-                            image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/nothumbnail.jpg'}
-                            itemId={ele.id}
-                            itemName={ele.original_title}
-    
-                            />
+                if(!ele.id) {
+                    return null;
+                }
+                    return <Thumbnail 
+                                key={ele.id}
+                                clickable={true}
+                                image={ele.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${ele.poster_path}` : './images/nothumbnail.jpg'}
+                                itemId={ele.id}
+                                itemName={ele.original_title}
+                                />
             });
+            movies = movies.filter(ele => ele !== null);
             if(this.state.topRatedLoading){
-                movies.push(<Spinner key="spinner_nowplaying"/>);
+                movies.push(<Spinner key="spinner_toprated"/>);
             }
             else if(this.state.topRatedMovies.length && (this.state.topRatedCurrentPage < this.state.topRatedTotalPages) && !this.state.topRatedLoading) {
                 movies.push(
-                    <LoadMore key="loading_nowplaying"  image={'./images/loadmore.jpg'} handleLoadMore={() => this.loadMore("NOW_PLAYING")}/>
+                    <LoadMore key="loading_toprated"  image={'./images/loadmore.jpg'} handleLoadMore={() => this.loadMore("TOP_RATED")}/>
                 );
             }
         }

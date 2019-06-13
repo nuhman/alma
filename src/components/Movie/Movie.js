@@ -19,13 +19,21 @@ class Movie extends Component {
         loading: false
     }
 
-    componentDidMount(){
+    _initializeComponent = (movieId) => {
         this.setState({
             loading: true
         });
         // first fetch the movie
-        const endPoint = `${API_URL}movie/${this.props.match.params.itemId}?api_key=${API_KEY}&language=en-US`;
+        const endPoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         this.fetchItems(endPoint);
+    }
+
+    componentDidMount(){
+        this._initializeComponent(this.props.match.params.itemId);
+    }
+
+    componentWillReceiveProps(nextProps){
+        this._initializeComponent(nextProps.match.url.substring(1, nextProps.match.url.length))
     }
 
     fetchItems = (endPoint) => {
@@ -41,6 +49,7 @@ class Movie extends Component {
                     this.setState({
                         movie: res
                     }, () => {
+                        console.log("Movies is", this.state.movie);
                         const url = `${API_URL}movie/${this.props.match.params.itemId}/credits?api_key=${API_KEY}`;
                         fetch(url)
                             .then(res => res.json())
@@ -60,9 +69,10 @@ class Movie extends Component {
             .catch(error => console.log('Error while fetching movie details', error));
     }
 
+
     render(){
-        if(!this.state.movie || !this.state.directors || !this.state.actors)
-            return <div></div>;
+        if(!this.state.movie || !this.state.directors || !this.state.actors || this.state.loading)
+            return <div></div>; /*<div style={{marginLeft: 'auto', marginRight: 'auto'}}>Hi</div>; //<div className="movie-container"><Spinner /></div>;*/
         return(
             <div>
                 <Navigation movieName={this.state.movie.title}/>
@@ -84,8 +94,6 @@ class Movie extends Component {
                     /> */}
                 <Actor actors={this.state.actors}/>
                 <SimilarMovies movieId={this.state.movie.id} />
-                <Spinner />
-                
             </div>
         );
     }

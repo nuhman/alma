@@ -13,7 +13,7 @@
 .header-container header{
     display: flex;
    align-items: center; 
-   color: #fff;
+   color: #00adb5;
 }
 .header-container header > *{
     margin-left: 1%;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link, BrowserRouter } from 'react-router-dom';
 import {API_URL, API_KEY} from '../../conifg';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
@@ -17,6 +18,8 @@ class SimilarMovies extends Component {
         });
         this.getSimilarMovies(this.props.movieId);
     }
+
+    
 
     getSimilarMovies = (id) => {
         const endPoint = `${API_URL}movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
@@ -38,9 +41,17 @@ class SimilarMovies extends Component {
                 <div className="similarMovies-item-title">YOU MAY ALSO LIKE THIS</div>
                 {
                     this.state.movies.map(movie => (
-                        <div className="similarMovies-card" key={movie.id}> 
-                            <img src={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : './images/nothumbnail.jpg'} alt="Director" />
-                        </div>                
+                        
+                            <div className="similarMovies-card" key={movie.id}> 
+                            <Link to={{
+                            pathname: `/${movie.id}`, 
+                            itemName: `${movie.title}`
+                        }}                  
+                        onClick={() => console.log("af")}      
+                        >
+                                <img src={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : './images/nothumbnail.jpg'} alt="Director" />
+                                </Link>
+                            </div>            
                 ))
                 }
             </div>
