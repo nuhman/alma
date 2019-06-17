@@ -76,7 +76,7 @@ class Movie extends Component {
         return(
             <div>
                 <Navigation movieName={this.state.movie.title}/>
-                <MovieInfo image={this.state.movie.poster_path} 
+                <MovieInfo image={this.state.movie.backdrop_path} 
                     title={this.state.movie.title}
                     original_title={this.state.movie.original_title}
                     genres={this.state.movie.genres}

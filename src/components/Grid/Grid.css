@@ -15,6 +15,7 @@
     text-align: center;
     margin-bottom: 20px;
     display: inline-block;
+    user-select: none;
 }
 .grid-element:last-child{
     margin-right: 16px;
@@ -46,9 +47,41 @@
   }
 
   */
-  .grid-content{
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+
+
+  @media only screen and (min-width: 590px) {
+    .grid-content{
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 2px;
+        justify-content: center;
+      }
+  } 
+  
+@media only screen and (min-width: 835px) {
+    .grid-content{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 2px;
+        justify-content: space-between;
+      }
+  }
+
+
+  @media (pointer:none), (pointer:coarse) {
+    .grid-content{
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        user-select: none;
+        }
+
+        .grid-content.active {
+            cursor: grabbing;
+          }
+        
+          .grid-content::-webkit-scrollbar {
+            display: none;
+          }  
   }
