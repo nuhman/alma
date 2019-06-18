@@ -9,6 +9,7 @@ import LoadMore from '../LoadMore/LoadMore';
 import Spinner from '../Spinner/Spinner';
 import NoResults from '../NoResults/NoResults';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
+import { transcode } from 'buffer';
 
 class Home extends Component {
 
@@ -22,6 +23,7 @@ class Home extends Component {
         moviesLoading: false,
         nowPlayingLoading: false,
         topRatedLoading: false,
+        searchOnProgress: false,
         moviesCurrentPage: 0,
         moviesTotalPages: 0,
         topRatedTotalPages: 0,
@@ -36,7 +38,8 @@ class Home extends Component {
         
         this.setState({
             moviesLoading: true, // used to show the loading spinner gif,
-            nowPlayingLoading: true
+            nowPlayingLoading: true,
+            topRatedLoading: true
         });
 
         // popular movies url
@@ -55,6 +58,9 @@ class Home extends Component {
         this.setState({
             movies: [],
             nowPlayingMovies: [],
+            topRatedMovies: [],
+            searchOnProgress: false,
+            topRatedLoading: true,
             moviesLoading: true,
             nowPlayingLoading: true,
             searchTerm
@@ -102,16 +108,16 @@ class Home extends Component {
                     });
                 } else if(term === "SEARCH") {
                     this.setState({
-                        movies: [...res.results],
+                        movies: this.state.searchOnProgress ? [...this.state.movies, ...res.results] : [...res.results],
                         nowPlayingMovies: [], // concatenate the existing movies with the results
+                        topRatedMovies: [],
                         moviesLoading: false, // used to remove spinner gif and instead show the results
-                        nowPlayingLoading: false,
-                        nowPlayingCurrentPage: res.page, // get the current page of the result
-                        nowPlayingTotalPages: res.total_pages // get total pages for results
+                        moviesCurrentPage: res.page, // get the current page of the result
+                        moviesTotalPages: res.total_pages // get total pages for results
                     });
                 } else if(term === "TOP_RATED") {
                     this.setState({
-                        topRatedMovies: [this.state.topRatedMovies, ...res.results],
+                        topRatedMovies: [...this.state.topRatedMovies, ...res.results],
                         topRatedLoading: false,
                         topRatedCurrentPage: res.page, // get the current page of the result
                         topRatedTotalPages: res.total_pages // get total pages for results
@@ -123,22 +129,25 @@ class Home extends Component {
 
     loadMore = (term) => {
         let endPoint = '';
-        this.setState({
-            moviesLoading: true,
-            nowPlayingLoading: true
-        });
+        // this.setState({
+        //     moviesLoading: true,
+        //     nowPlayingLoading: true
+        // });
         
         if(this.state.searchTerm === ''){
             switch(term) {
                 case "POPULAR":
+                        this.setState({moviesLoading: true});
                         endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.moviesCurrentPage + 1}`;
                         this.fetchItems(endPoint, "POPULAR");   
                         break;
                 case "NOW_PLAYING":
+                        this.setState({nowPlayingLoading: true});
                         endPoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${this.state.nowPlayingCurrentPage + 1}&region=IN`;
                         this.fetchItems(endPoint, "NOW_PLAYING");  
                         break;
                 case "TOP_RATED":
+                        this.setState({topRatedLoading: true});
                         endPoint = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${this.state.topRatedCurrentPage + 1}`;
                         this.fetchItems(endPoint, "TOP_RATED");  
                         break;
@@ -147,6 +156,7 @@ class Home extends Component {
             }
             
         } else {
+            this.setState({moviesLoading: true, searchOnProgress: true});
             endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${this.state.moviesCurrentPage + 1}`;
             this.fetchItems(endPoint, "SEARCH");
         }
@@ -172,7 +182,7 @@ class Home extends Component {
         let movies = [];
         if(term === "POPULAR") {
             movies = this.state.movies.map((ele, i) => {
-                if(!ele.id) {
+                if(!ele.id) { // if movie id is not there, 
                     return null;
                 }
                 return <Thumbnail 
@@ -252,7 +262,7 @@ class Home extends Component {
                 {this.state.welcomeImage ?
                     <div className="welcomeImage-searchBar-container">
                         <WelcomeImage 
-                            image={this.getEndPoint("WELCOME_IMAGE")}
+                            image={this.state.welcomeImage.backdrop_path ? this.getEndPoint("WELCOME_IMAGE") : null}
                             //image='https://image.tmdb.org/t/p/w1280/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg'
                             title={this.state.welcomeImage.title}
                             //title='Avengers: End Game'
