@@ -1,4 +1,5 @@
 import React from 'react';
+import Flickity from 'react-flickity-component';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
 import './Actor.css';
@@ -42,9 +43,20 @@ const Actor = (props) => {
             </div> */}
             {/* <div class="fade"></div> */}
             <div className="movieInfo-item-title">CAST</div>
+            <Flickity
+      className={''} // default ''
+      options={{
+        initialIndex: 0,
+        freeScroll: true,
+        pageDots: false,
+        cellAlign: 'left'
+    }}
+      disableImagesLoaded={false} // default false
+      reloadOnUpdate // default false
+    >
             {getCast(props.actors)}
 
-
+            </Flickity>
         </div>
     );
 }

@@ -13,7 +13,7 @@ class Grid extends Component {
                 initialIndex: 0,
                 freeScroll: true,
                 pageDots: false,
-                cellAlign: 'center'
+                cellAlign: 'left'
             }
         };
 
@@ -155,7 +155,7 @@ class Grid extends Component {
                 initialIndex: this.props.gridStartingPos,
                 freeScroll: true,
                 pageDots: false,
-                cellAlign: 'center'
+                cellAlign: 'left'
             }
         });
         console.log("~~~~~", this.state.flickityOptions.initialIndex);

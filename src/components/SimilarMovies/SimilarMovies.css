@@ -7,7 +7,7 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   -webkit-overflow-scrolling: touch;	
   color: #eee;
 }
@@ -27,6 +27,9 @@
 
   .similarMovies-card:last-child{
     margin-right:16px;
+  }
+  .flickity-slider{
+    margin-left: 16px;
   }
 
   .similarMovies-card img{

@@ -1,4 +1,5 @@
 import React from 'react';
+import Flickity from 'react-flickity-component';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../../conifg';
 import Thumbnail from '../../Thumbnail/Thumbnail';
 import Rating from '../../Rating/Rating';
@@ -79,7 +80,19 @@ const MovieInfo = (props) => {
 
             <div className="movieInfo-item-title">DIRECTORS</div>
             <div className="movieInfo-directors">
+            <Flickity
+      className={''} // default ''
+      options={{
+        initialIndex: 0,
+        freeScroll: true,
+        pageDots: false,
+        cellAlign: 'left'
+    }}
+      disableImagesLoaded={false} // default false
+      reloadOnUpdate // default false
+    >
                     {getDirectors(props.directors)} 
+                    </Flickity>
             </div> 
 
         </div>

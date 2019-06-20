@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link, BrowserRouter } from 'react-router-dom';
+import Flickity from 'react-flickity-component';
 import {API_URL, API_KEY} from '../../conifg';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
@@ -40,6 +41,18 @@ class SimilarMovies extends Component {
         return (
             <div className="similarMovies-container">
                 <div className="similarMovies-item-title">YOU MAY ALSO LIKE THIS</div>
+                <Flickity
+      className={''} // default ''
+      options={{
+        initialIndex: 0,
+        freeScroll: true,
+        pageDots: false,
+        cellAlign: 'left'
+    }}
+      disableImagesLoaded={false} // default false
+      reloadOnUpdate // default false
+    >
+      
                 {
                     this.state.movies.map(movie => (
                         
@@ -55,6 +68,7 @@ class SimilarMovies extends Component {
                             </div>            
                 ))
                 }
+                </Flickity>
             </div>
         );
     }
