@@ -17,7 +17,8 @@
     margin:0;
     outline:none;
     font-size: 18px;
-    background-color: #eee;
+    background-color: #393e46;
+    color:#eee;
 }
 
 @media only screen and (max-width: 520px) {

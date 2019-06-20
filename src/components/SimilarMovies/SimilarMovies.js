@@ -36,6 +36,7 @@ class SimilarMovies extends Component {
     }
 
     render(){
+        if(!this.state.movies.length) return <div></div>;
         return (
             <div className="similarMovies-container">
                 <div className="similarMovies-item-title">YOU MAY ALSO LIKE THIS</div>

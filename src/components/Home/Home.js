@@ -29,7 +29,11 @@ class Home extends Component {
         topRatedTotalPages: 0,
         topRatedCurrentPage: 0,
         nowPlayingCurrentPage: 0,
-        nowPlayingTotalPages: 0
+        nowPlayingTotalPages: 0,
+        gridStartingPositon_Popular: 0,
+        gridStartingPositon_NowPlaying: 0,
+        gridStartingPositon_TopRated: 0, 
+        
     }
 
     componentDidMount(){
@@ -139,16 +143,25 @@ class Home extends Component {
                 case "POPULAR":
                         this.setState({moviesLoading: true});
                         endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.moviesCurrentPage + 1}`;
+                        this.setState({
+                            gridStartingPositon_Popular: this.state.movies.length-1
+                        });
                         this.fetchItems(endPoint, "POPULAR");   
                         break;
                 case "NOW_PLAYING":
                         this.setState({nowPlayingLoading: true});
                         endPoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${this.state.nowPlayingCurrentPage + 1}&region=IN`;
+                        this.setState({
+                            gridStartingPositon_NowPlaying: this.state.nowPlayingMovies.length-1
+                        });
                         this.fetchItems(endPoint, "NOW_PLAYING");  
                         break;
                 case "TOP_RATED":
                         this.setState({topRatedLoading: true});
                         endPoint = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${this.state.topRatedCurrentPage + 1}`;
+                        this.setState({
+                            gridStartingPositon_TopRated: this.state.topRatedMovies.length-1
+                        });
                         this.fetchItems(endPoint, "TOP_RATED");  
                         break;
                 default:
@@ -275,7 +288,8 @@ class Home extends Component {
                 <div className="home-grid-container">
                     <Grid 
                         header={this.state.searchTerm ? 'Search Results' : 'Popular Movies'}
-                        loading={this.state.moviesLoading}                        
+                        loading={this.state.moviesLoading}         
+                        gridStartingPos={this.state.gridStartingPositon_Popular}             
                     >
                         {
                             this.getMovies("POPULAR")
@@ -287,7 +301,8 @@ class Home extends Component {
                         <div className="home-grid-container">
                             <Grid 
                                 header={'Now Playing'}
-                                loading={this.state.nowPlayingLoading}                        
+                                loading={this.state.nowPlayingLoading} 
+                                gridStartingPos={this.state.gridStartingPositon_NowPlaying}                        
                             >
                                 {
                                     this.getMovies("NOW_PLAYING")
@@ -296,7 +311,9 @@ class Home extends Component {
                         </div>
                         <div className="home-grid-container">
                             <Grid 
-                                header={'Top Rated'}                        
+                                header={'Top Rated'}      
+                                loading={this.state.topRatedLoading}
+                                gridStartingPos={this.state.gridStartingPositon_TopRated}                 
                             >
                                 {
                                     this.getMovies("TOP_RATED")

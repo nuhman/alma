@@ -1,28 +1,23 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import DragScrollProvider from 'drag-scroll-provider';
-import ScrollMenu from 'react-horizontal-scrolling-menu';
+import Flickity from 'react-flickity-component';
 import './Grid.css';
 
 class Grid extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     // this.myRef = React.createRef();
+    constructor(props) {
+        super(props);
+      
 
-    //     // this.state = {
-    //     //     isDown: false,
-    //     //     startX: null,
-    //     //     scrollLeft: null
-    //     // }
+        this.state = {
+            flickityOptions: {
+                initialIndex: 0,
+                freeScroll: true,
+                pageDots: false,
+                cellAlign: 'center'
+            }
+        };
 
-    //     this.state = {isScrolling: false};
-
-    //     this.handleMouseDown = this.handleMouseDown.bind(this);   
-    //     this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    //     this.handleMouseUp = this.handleMouseUp.bind(this);
-    //     this.handleMouseMove = this.handleMouseMove.bind(this);  
-    // }
+    }
 
 
     // componentWillUpdate = (nextProps, nextState) =>{
@@ -150,15 +145,63 @@ class Grid extends Component {
     //     this._scroller = ReactDOM.findDOMNode(scroller);
     // };
     
+    componentDidMount(){
+        
+    }
+
+    componentWillReceiveProps(){
+        this.setState({
+            flickityOptions: {
+                initialIndex: this.props.gridStartingPos,
+                freeScroll: true,
+                pageDots: false,
+                cellAlign: 'center'
+            }
+        });
+        console.log("~~~~~", this.state.flickityOptions.initialIndex);
+    }
 
     render(){
+        
+
         return(
             <div className="grid-container">
                 <div className="grid-header">
                     {this.props.header && !this.props.loading ? <h1>{this.props.header}</h1> : null}
                 </div>
                     <div className="grid-content">
+                    <Flickity
+      className={''} // default ''
+      options={this.state.flickityOptions}
+      disableImagesLoaded={false} // default false
+      reloadOnUpdate // default false
+    >
                         {this.renderElements()}
+                        {/* <Thumbnail 
+                            key={"ele.id"}
+                            clickable={true}
+                            image={'./images/nothumbnail.jpg'}
+                            itemId={"ele.id"}
+                            itemName={"ele.original_title"}
+    
+                            />
+                            <Thumbnail 
+                            key={"ele.id1"}
+                            clickable={true}
+                            image={'./images/nothumbnail.jpg'}
+                            itemId={"ele.id"}
+                            itemName={"ele.original_title"}
+    
+                            />
+                            <Thumbnail 
+                            key={"ele.id2"}
+                            clickable={true}
+                            image={'./images/nothumbnail.jpg'}
+                            itemId={"ele.id"}
+                            itemName={"ele.original_title"}
+    
+                            /> */}
+                        </Flickity>
                     </div>
             </div>
         );

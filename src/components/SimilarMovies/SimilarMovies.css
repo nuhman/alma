@@ -8,7 +8,8 @@
     overflow-y: hidden;
     white-space: nowrap;
     margin-bottom: 20px;
-	-webkit-overflow-scrolling: touch;	
+  -webkit-overflow-scrolling: touch;	
+  color: #eee;
 }
 .similarMovies-container::-webkit-scrollbar {
     display: none;
