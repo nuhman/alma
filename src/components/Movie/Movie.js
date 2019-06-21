@@ -49,7 +49,7 @@ class Movie extends Component {
                     this.setState({
                         movie: res
                     }, () => {
-                        console.log("Movies is", this.state.movie);
+                        console.log("**Movies is", this.state.movie);
                         const url = `${API_URL}movie/${this.props.match.params.itemId}/credits?api_key=${API_KEY}`;
                         fetch(url)
                             .then(res => res.json())
@@ -82,6 +82,7 @@ class Movie extends Component {
                     genres={this.state.movie.genres}
                     tagline={this.state.movie.tagline}
                     rating={this.state.movie.vote_average}
+                    vote_count={this.state.movie.vote_count}
                     overview={this.state.movie.overview}
                     directors={this.state.directors}
                     duration={this.state.movie.runtime} 

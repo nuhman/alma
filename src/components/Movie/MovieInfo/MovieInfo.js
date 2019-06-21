@@ -56,7 +56,7 @@ const MovieInfo = (props) => {
             </div>
             <div className="movieInfo-imdb">
                 <div className="movieInfo-item-title">IMDB RATING</div>
-                <Rating rating={props.rating}/>
+                <Rating rating={props.rating} vote_count={props.vote_count}/>
                 {/* <div className="movieInfo-imdb-rating-div">
                     <div className="movieInfo-imdb-rating">{props.rating * 10}%</div>
                     <div className="movieInfo-imdb-bardiv">

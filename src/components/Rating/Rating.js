@@ -3,7 +3,8 @@ import React from 'react';
 import './Rating.css';
 
 
-const getRating = (rating) => {
+const getRating = (rating, vc) => {
+    console.log("HEYYYYY", vc);
     return rating*10;
 }
 
@@ -12,7 +13,7 @@ const Rating = (props) => {
         <div className="rating-box">
             <div className='rating-container'>
                 <div className='rating-stars'>
-                    <span className='rating' style={{width: (props.rating ? `${getRating(props.rating)}%` : '0%')}}></span>
+                    <span className='rating' style={{width: (props.rating ? `${getRating(props.rating, props.vote_count)}%` : '0%')}}></span>
                 </div>
             </div>
 
@@ -23,6 +24,7 @@ const Rating = (props) => {
                     </clipPath>
                 </defs>
             </svg>
+            <p className="rating-text">{props.vote_count ? `${props.vote_count}` + (props.vote_count * 1 === 1 ? ` Rating` : ` Ratings`) : `Not Rated Yet!`}</p>
         </div>
     );
 }
