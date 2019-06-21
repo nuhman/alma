@@ -5,6 +5,7 @@
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   color: #eee;
+  margin-bottom: 20px;
 }
 
 .actor-container::-webkit-scrollbar {
@@ -17,8 +18,11 @@
   display: inline-block;
   margin-left:36px;
   margin-top:16px;
+  color: #eee;
 }
-
+.actor-card h4, .actor-card p{
+  color: #eee;
+}
 .actor-card-image{
   background-repeat: no-repeat;
   background-size: cover;

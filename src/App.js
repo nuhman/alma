@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Movie from './components/Movie/Movie';
+import Profile from './components/Profile/Profile';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/:itemId" component={Movie} exact />
+          <Route path="/profile/:itemId" component={Profile} exact />
           <Route component={NotFound} />
         </Switch>
       </div>

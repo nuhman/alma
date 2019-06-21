@@ -1,5 +1,6 @@
 import React from 'react';
 import Flickity from 'react-flickity-component';
+import {Link, BrowserRouter } from 'react-router-dom';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
 import './Actor.css';
@@ -25,9 +26,16 @@ const getCast = (castArray) => {
 
     return castArray.map((castObj,i) => (
         <div className="actor-card" key={castObj.cast_id}>
+            <Link to={{
+                            pathname: `/profile/${castObj.id}`, 
+                            itemName: `${castObj.title}`
+                        }}                  
+                        onClick={() => console.log("af")}      
+                        >
             <div className="actor-card-image" style={{backgroundImage: `url(${castObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + castObj.profile_path) : './images/nothumbnail.jpg'})`}}></div>		
             <h4>{castObj.name ? castObj.name : "N.A"}</h4>
             <p>{castObj.character ? castObj.character : "N.A"}</p>
+            </Link>
 	    </div> 
     ));
 
