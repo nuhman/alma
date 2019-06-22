@@ -45,7 +45,15 @@
   .similarMovies-item-title{
     margin-top:32px;
     margin-bottom:16px;
-    margin-left: 16px;
+    margin-left: 32px;
     font-size:0.9em;
     font-weight: bolder;
+}
+
+.similarMovies-role{
+  color: #eee;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

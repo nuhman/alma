@@ -11,7 +11,7 @@ class Header extends Component {
             <div className="header-container">
                 <Link to="/" className="header-link">
                     <header>
-                        <img src="./images/popcorn.png" alt="rmdb-logo" />
+                        <img src="/images/popcorn.png" alt="rmdb-logo" />
                         <h1>rmdb</h1>
                     </header>
                 </Link>

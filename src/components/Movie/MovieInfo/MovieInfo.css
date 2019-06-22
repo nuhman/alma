@@ -34,7 +34,7 @@
 }
 .movieInfo-item-title{
     margin-top:16px;
-    margin-left: 16px;
+    margin-left: 32px;
     font-size:0.9em;
     font-weight: bolder;
 }
@@ -60,7 +60,7 @@
 }
 
 .movieInfo-plot-content{
-    margin:0px 16px;
+    margin:0px 32px;
     
 }
 
@@ -140,4 +140,8 @@
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #eee;
+}
+.movieInfoBar-container {
+    padding: 16px 32px;
 }

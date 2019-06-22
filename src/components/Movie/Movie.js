@@ -94,7 +94,7 @@ class Movie extends Component {
                             budget={this.state.movie.budget}
                     /> */}
                 <Actor actors={this.state.actors}/>
-                <SimilarMovies movieId={this.state.movie.id} />
+                <SimilarMovies movieId={this.state.movie.id} tag="YOU MAY ALSO LIKE"/>
             </div>
         );
     }

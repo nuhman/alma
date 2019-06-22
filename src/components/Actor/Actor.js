@@ -25,18 +25,21 @@ const getCast = (castArray) => {
     // return cast;
 
     return castArray.map((castObj,i) => (
+        <Link to={{
+            pathname: `/profile/${castObj.id}`, 
+            itemName: `${castObj.title}`
+        }}         
+        key={castObj.cast_id}         
+        onClick={() => console.log("af")}      
+        >
         <div className="actor-card" key={castObj.cast_id}>
-            <Link to={{
-                            pathname: `/profile/${castObj.id}`, 
-                            itemName: `${castObj.title}`
-                        }}                  
-                        onClick={() => console.log("af")}      
-                        >
-            <div className="actor-card-image" style={{backgroundImage: `url(${castObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + castObj.profile_path) : './images/nothumbnail.jpg'})`}}></div>		
+            
+            <div className="actor-card-image" style={{backgroundImage: `url(${castObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + castObj.profile_path) : '/images/nothumbnail.jpg'})`}}></div>		
             <h4>{castObj.name ? castObj.name : "N.A"}</h4>
             <p>{castObj.character ? castObj.character : "N.A"}</p>
-            </Link>
+            
 	    </div> 
+        </Link>
     ));
 
 
@@ -52,16 +55,16 @@ const Actor = (props) => {
             {/* <div class="fade"></div> */}
             <div className="movieInfo-item-title">CAST</div>
             <Flickity
-      className={''} // default ''
-      options={{
-        initialIndex: 0,
-        freeScroll: true,
-        pageDots: false,
-        cellAlign: 'left'
-    }}
-      disableImagesLoaded={false} // default false
-      reloadOnUpdate // default false
-    >
+                className={''} // default ''
+                options={{
+                    initialIndex: 0,
+                    freeScroll: true,
+                    pageDots: false,
+                    cellAlign: 'left'
+                }}
+                disableImagesLoaded={false} // default false
+                reloadOnUpdate // default false
+            >
             {getCast(props.actors)}
 
             </Flickity>

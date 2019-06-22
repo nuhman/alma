@@ -14,10 +14,33 @@ class SimilarMovies extends Component {
     };
 
     componentDidMount(){
-        this.setState({
-            loading: true
-        });
-        this.getSimilarMovies(this.props.movieId);
+        if(this.props.movieId){
+            this.setState({
+                loading: true
+            });
+            this.getSimilarMovies(this.props.movieId);
+        } else {
+            console.log("!!!!", this.props.movies);
+            this.setState({
+                movies: this.props.movies
+            }, console.log("MOvies is set", this.state.movies));
+        }
+        
+    }
+
+    componentWillReceiveProps(){
+        if(this.props.movieId){
+            this.setState({
+                loading: true
+            });
+            this.getSimilarMovies(this.props.movieId);
+        } else {
+            console.log("!!!!", this.props.movies);
+            this.setState({
+                movies: this.props.movies
+            }, console.log("MOvies is set", this.state.movies));
+        }
+        
     }
 
     
@@ -40,7 +63,7 @@ class SimilarMovies extends Component {
         if(!this.state.movies.length) return <div></div>;
         return (
             <div className="similarMovies-container">
-                <div className="similarMovies-item-title">YOU MAY ALSO LIKE THIS</div>
+                <div className="similarMovies-item-title">{this.props.tag}</div>
                 <Flickity
       className={''} // default ''
       options={{
@@ -55,17 +78,20 @@ class SimilarMovies extends Component {
       
                 {
                     this.state.movies.map(movie => (
-                        
-                            <div className="similarMovies-card" key={movie.id}> 
-                            <Link to={{
+                        <Link to={{
                             pathname: `/${movie.id}`, 
                             itemName: `${movie.title}`
-                        }}                  
+                        }}     
+                        key={movie.id}             
                         onClick={() => console.log("af")}      
                         >
-                                <img src={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : './images/nothumbnail.jpg'} alt="Director" />
-                                </Link>
-                            </div>            
+                        
+                            <div className="similarMovies-card" key={movie.id}> 
+                            
+                                <img src={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : '/images/nothumbnail.jpg'} alt="Director" />
+                                <p className="similarMovies-role">{movie.character ? movie.character : movie.job}</p>
+                            </div>   
+                            </Link>          
                 ))
                 }
                 </Flickity>

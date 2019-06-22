@@ -1,5 +1,6 @@
 import React from 'react';
 import Flickity from 'react-flickity-component';
+import {Link, BrowserRouter } from 'react-router-dom';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../../conifg';
 import Thumbnail from '../../Thumbnail/Thumbnail';
 import Rating from '../../Rating/Rating';
@@ -20,10 +21,20 @@ const getDirectors = (directorsArray) => {
         //         <h4><b>{directorsObj.name}</b></h4> 
         //     </div>
         // </div>
+        <Link to={{
+            pathname: `/profile/${directorsObj.id}`, 
+            itemName: `${directorsObj.name}`
+        }}                
+        key={directorsObj.id}  
+        onClick={() => console.log("af")}      
+        >
         <div className="director-card" key={directorsObj.id}>
-            <div className="director-card-image" style={{backgroundImage: `url(${directorsObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + directorsObj.profile_path) : './images/nothumbnail.jpg'})`}}></div>		
+            
+            <div className="director-card-image" style={{backgroundImage: `url(${directorsObj.profile_path ? (IMAGE_BASE_URL + POSTER_SIZE + directorsObj.profile_path) : '/images/nothumbnail.jpg'})`}}></div>		
             <h4>{directorsObj.name ? directorsObj.name : "N.A"}</h4>
+            
 	    </div>
+        </Link>
 
     ));
 }

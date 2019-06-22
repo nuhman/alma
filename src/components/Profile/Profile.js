@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE} from '../../conifg';
-import Navigation from '../Navigation/Navigation';
+import SimilarMovies from '../SimilarMovies/SimilarMovies';
 import './Profile.css';
 
 class Profile extends Component {
@@ -12,7 +12,10 @@ class Profile extends Component {
     this.state = {
       app: "as",
       person: {},
-      gallery: []
+      gallery: [],
+      social: {},
+      cast: [],
+      crew: []
     }
   }
 
@@ -28,6 +31,19 @@ class Profile extends Component {
     .then(res => this.setState({
       gallery: res.profiles
     }, console.log("Profile.js, Gallery", res))); */
+
+    fetch(`${API_URL}person/${this.props.match.params.itemId}/external_ids?api_key=${API_KEY}&language=en-US`)
+    .then(res => res.json())
+    .then(res => this.setState({
+      social: res
+    }, console.log("Profile.js, Profile", res))); 
+
+    fetch(`${API_URL}person/${this.props.match.params.itemId}/movie_credits?api_key=${API_KEY}&language=en-US`)
+    .then(res => res.json())
+    .then(res => this.setState({
+      cast: res.cast.slice(0, 10),
+      crew: res.crew.slice(0, 10)
+    }, console.log("Profile.js, CAST", res.cast))); 
 
 
   }  
@@ -51,9 +67,24 @@ class Profile extends Component {
 
   render(){
     return(
+      <div>
       <div className="profile_container">
         {/* <Navigation movieName={"Go Back"}/> */}
         <img className="profile_image" src={`${IMAGE_BASE_URL}${POSTER_SIZE}${this.state.person.profile_path}`} alt="profile_image" />  
+
+        <div className="profile_social">
+        
+            {this.state.social.facebook_id ? <a  target="_blank" href={`https://facebook.com/${this.state.social.facebook_id}`} ><img src="https://image.flaticon.com/icons/svg/220/220200.svg" /></a> : null }
+
+            {this.state.social.twitter_id ? <a  target="_blank" href={`https://twitter.com/${this.state.social.twitter_id}`}><img src="https://image.flaticon.com/icons/svg/1409/1409937.svg" /></a> : null }
+
+            {this.state.social.instagram_id ? <a  target="_blank" href={`https://instagram.com/${this.state.social.instagram_id}`}><img src="https://image.flaticon.com/icons/svg/1409/1409946.svg" /></a> : null }
+
+            {this.state.social.imdb_id ? <a  target="_blank" href={`https://imdb.com/name/${this.state.social.imdb_id}`}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/800px-IMDB_Logo_2016.svg.png" /></a> : null }
+
+        </div>
+
+
         <div className="profile_details">
           <div className="profile_details_block">
             <p className="profile_details_heading">Name</p>
@@ -78,14 +109,14 @@ class Profile extends Component {
             </div>
           ): null }
           
-          {this.state.person.also_known_as ? (
+          {this.state.person.also_known_as ? (this.state.person.also_known_as.length > 0 ?  (
             <div className="profile_details_block">
               <p className="profile_details_heading">Also known as</p>
               <div className="profile_details_value">{this.getAlternateNames()}</div>
               </div> 
-          ) : null }
+          ) : null) : null}
 
-          {this.state.person.also_known_as ? (
+          {this.state.person.biography ? (
             <div className="profile_details_block">
               <p className="profile_details_heading">Bio</p>
               <p className="profile_details_value">{this.state.person.biography}</p>
@@ -101,6 +132,11 @@ class Profile extends Component {
 
           </div>    
 
+          
+
+      </div>
+      {this.state.crew.length > 0 ? <SimilarMovies movies={this.state.crew} tag="MOST POPULAR AS CREW" /> : <div></div> }
+      {this.state.cast.length > 0 ? <SimilarMovies movies={this.state.cast} tag="MOST POPULAR AS CAST" /> : <div></div> }
       </div>
     );
   }  
