@@ -18,11 +18,30 @@ const convertMinToHoursAndMin = (min) => {
     return rhours + " hour and " + (rminutes > 0 ? (rminutes > 1 ? "and " + rminutes + " minutes" : "and" + rminutes + " minute") : "");
 }
 
+const convertCurrency = (labelValue) => {
+
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e+9
+
+    ? Math.abs(Number(labelValue)) / 1.0e+9 + "B"
+    // Six Zeroes for Millions
+    : Math.abs(Number(labelValue)) >= 1.0e+6
+
+    ? Math.abs(Number(labelValue)) / 1.0e+6 + "M"
+    // Three Zeroes for Thousands
+    : Math.abs(Number(labelValue)) >= 1.0e+3
+
+    ? Math.abs(Number(labelValue)) / 1.0e+3 + "K"
+
+    : Math.abs(Number(labelValue));
+
+}
+
 
 const validateBudgetOrRevenue = (curr) => {
     if(!curr || Number(curr) <= 0)
         return "N.A";
-    return "$" + curr;
+    return convertCurrency(curr) + " $";
 }
 
 const MovieInfoBar = (props) => {

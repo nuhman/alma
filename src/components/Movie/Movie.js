@@ -3,6 +3,7 @@ import {API_URL, API_KEY} from '../../conifg';
 import Navigation from '../Navigation/Navigation';
 import MovieInfo from './MovieInfo/MovieInfo';
 import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
+import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Grid from '../Grid/Grid';
 import Actor from '../Actor/Actor';
 import Spinner from '../Spinner/Spinner';
@@ -14,6 +15,7 @@ class Movie extends Component {
 
     state = {
         movie: null,
+        video: null,
         actors: null,
         directors: [],
         loading: false
@@ -24,8 +26,9 @@ class Movie extends Component {
             loading: true
         });
         // first fetch the movie
-        const endPoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+        let endPoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         this.fetchItems(endPoint);
+        
     }
 
     componentDidMount(){
@@ -94,6 +97,14 @@ class Movie extends Component {
                             budget={this.state.movie.budget}
                     /> */}
                 <Actor actors={this.state.actors}/>
+                <VideoPlayer opts={{
+                            height: '320',
+                            width: '320',
+                            playerVars: { 
+                                autoplay: 0
+                            }}}
+                            movieId={this.state.movie.id}
+                        />
                 <SimilarMovies movieId={this.state.movie.id} tag="YOU MAY ALSO LIKE"/>
             </div>
         );
