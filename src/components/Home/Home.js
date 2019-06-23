@@ -8,7 +8,7 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 import LoadMore from '../LoadMore/LoadMore';
 import Spinner from '../Spinner/Spinner';
 import NoResults from '../NoResults/NoResults';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
+import { API_URL, IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 import { transcode } from 'buffer';
 
 class Home extends Component {
@@ -80,7 +80,7 @@ class Home extends Component {
             endPoint = this.getEndPoint("TOP_RATED");
             this.fetchItems(endPoint, "TOP_RATED");
         } else {
-            endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+            endPoint = `${API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchTerm}`;
             this.fetchItems(endPoint, "SEARCH");
         }
         console.log(searchTerm);
@@ -144,7 +144,7 @@ class Home extends Component {
             switch(term) {
                 case "POPULAR":
                         this.setState({moviesLoading: true});
-                        endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.moviesCurrentPage + 1}`;
+                        endPoint = `${API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${this.state.moviesCurrentPage + 1}`;
                         this.setState({
                             gridStartingPositon_Popular: this.state.movies.length-1
                         });
@@ -152,7 +152,7 @@ class Home extends Component {
                         break;
                 case "NOW_PLAYING":
                         this.setState({nowPlayingLoading: true});
-                        endPoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${this.state.nowPlayingCurrentPage + 1}&region=IN`;
+                        endPoint = `${API_URL}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${this.state.nowPlayingCurrentPage + 1}&region=IN`;
                         this.setState({
                             gridStartingPositon_NowPlaying: this.state.nowPlayingMovies.length-1
                         });
@@ -160,7 +160,7 @@ class Home extends Component {
                         break;
                 case "TOP_RATED":
                         this.setState({topRatedLoading: true});
-                        endPoint = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${this.state.topRatedCurrentPage + 1}`;
+                        endPoint = `${API_URL}movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${this.state.topRatedCurrentPage + 1}`;
                         this.setState({
                             gridStartingPositon_TopRated: this.state.topRatedMovies.length-1
                         });
@@ -172,7 +172,7 @@ class Home extends Component {
             
         } else {
             this.setState({moviesLoading: true, searchOnProgress: true});
-            endPoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${this.state.moviesCurrentPage + 1}`;
+            endPoint = `${API_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${this.state.moviesCurrentPage + 1}`;
             this.fetchItems(endPoint, "SEARCH");
         }
                        
@@ -181,11 +181,11 @@ class Home extends Component {
     getEndPoint = (term) => {
         switch(term){
             case "POPULAR":
-                return `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+                return `${API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
             case "NOW_PLAYING":
-                return `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=IN`;
+                return `${API_URL}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1&region=IN`;
             case "TOP_RATED":
-                return `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
+                return `${API_URL}movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
             case "WELCOME_IMAGE":
                 return `${IMAGE_BASE_URL}${BACKDROP_SIZE}${this.state.welcomeImage.backdrop_path}`;
             default:

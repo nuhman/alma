@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {API_URL, API_KEY} from '../../conifg';
+import {API_URL} from '../../conifg';
 import Navigation from '../Navigation/Navigation';
 import MovieInfo from './MovieInfo/MovieInfo';
 import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
@@ -26,7 +26,7 @@ class Movie extends Component {
             loading: true
         });
         // first fetch the movie
-        let endPoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+        let endPoint = `${API_URL}movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
         this.fetchItems(endPoint);
     }
 
@@ -55,7 +55,7 @@ class Movie extends Component {
                     }, () => {
                         console.log("**Movies is", this.state.movie);
                         document.title = this.state.movie.title + " | Alma";
-                        const url = `${API_URL}movie/${this.props.match.params.itemId}/credits?api_key=${API_KEY}`;
+                        const url = `${API_URL}movie/${this.props.match.params.itemId}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
                         fetch(url)
                             .then(res => res.json())
                             .then(res => {

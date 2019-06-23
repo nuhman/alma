@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE} from '../../conifg';
+import {API_URL, IMAGE_BASE_URL, POSTER_SIZE} from '../../conifg';
 import SimilarMovies from '../SimilarMovies/SimilarMovies';
 import './Profile.css';
 
@@ -20,7 +20,7 @@ class Profile extends Component {
   }
 
   componentDidMount(){
-    fetch(`${API_URL}person/${this.props.match.params.itemId}?api_key=${API_KEY}&language=en-US`)
+    fetch(`${API_URL}person/${this.props.match.params.itemId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     .then(res => res.json())
     .then(res => this.setState({
       person: res
@@ -35,13 +35,13 @@ class Profile extends Component {
       gallery: res.profiles
     }, console.log("Profile.js, Gallery", res))); */
 
-    fetch(`${API_URL}person/${this.props.match.params.itemId}/external_ids?api_key=${API_KEY}&language=en-US`)
+    fetch(`${API_URL}person/${this.props.match.params.itemId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     .then(res => res.json())
     .then(res => this.setState({
       social: res
     }, console.log("Profile.js, Profile", res))); 
 
-    fetch(`${API_URL}person/${this.props.match.params.itemId}/movie_credits?api_key=${API_KEY}&language=en-US`)
+    fetch(`${API_URL}person/${this.props.match.params.itemId}/movie_credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     .then(res => res.json())
     .then(res => this.setState({
       cast: res.cast.slice(0, 10),

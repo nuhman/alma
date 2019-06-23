@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link, BrowserRouter } from 'react-router-dom';
 import Flickity from 'react-flickity-component';
-import {API_URL, API_KEY} from '../../conifg';
+import {API_URL} from '../../conifg';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../conifg';
 
 import './SimilarMovies.css';
@@ -46,7 +46,7 @@ class SimilarMovies extends Component {
     
 
     getSimilarMovies = (id) => {
-        const endPoint = `${API_URL}movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
+        const endPoint = `${API_URL}movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
         fetch(endPoint)
             .then(res => res.json())
             .then(res => {

@@ -1,6 +1,6 @@
 import React, {Component}  from 'react';
 import YouTube from 'react-youtube';
-import {API_URL, API_KEY} from '../../../conifg';
+import {API_URL} from '../../../conifg';
 import './VideoPlayer.css';
 
 class VideoPlayer extends Component {
@@ -10,7 +10,7 @@ class VideoPlayer extends Component {
     }
 
     componentDidMount(){
-        let endPoint = `${API_URL}movie/${this.props.movieId}/videos?api_key=${API_KEY}&language=en-US`;
+        let endPoint = `${API_URL}movie/${this.props.movieId}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
         this.fetchItems(endPoint);
     }
 
