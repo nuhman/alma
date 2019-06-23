@@ -24,7 +24,10 @@ class Profile extends Component {
     .then(res => res.json())
     .then(res => this.setState({
       person: res
-    }, console.log("Profile.js, Profile", res))); 
+    }, () => {
+      document.title = this.state.person.name + " | Alma";
+      console.log("Profile.js, Profile", res)    
+    })); 
 
     /*fetch(`${API_URL}person/${this.props.id}/images?api_key=${API_KEY}`)
     .then(res => res.json())

@@ -40,6 +40,8 @@ class Home extends Component {
         
         // this run after the page is loaded
         
+        document.title = 'Alma | Movie Database';
+
         this.setState({
             moviesLoading: true, // used to show the loading spinner gif,
             nowPlayingLoading: true,

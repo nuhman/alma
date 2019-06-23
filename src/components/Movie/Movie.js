@@ -28,15 +28,16 @@ class Movie extends Component {
         // first fetch the movie
         let endPoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         this.fetchItems(endPoint);
-        
     }
 
     componentDidMount(){
+        
         this._initializeComponent(this.props.match.params.itemId);
     }
 
     componentWillReceiveProps(nextProps){
-        this._initializeComponent(nextProps.match.url.substring(1, nextProps.match.url.length))
+       
+        this._initializeComponent(nextProps.match.url.substring(1, nextProps.match.url.length));
     }
 
     fetchItems = (endPoint) => {
@@ -53,6 +54,7 @@ class Movie extends Component {
                         movie: res
                     }, () => {
                         console.log("**Movies is", this.state.movie);
+                        document.title = this.state.movie.title + " | Alma";
                         const url = `${API_URL}movie/${this.props.match.params.itemId}/credits?api_key=${API_KEY}`;
                         fetch(url)
                             .then(res => res.json())
