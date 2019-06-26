@@ -48,7 +48,7 @@ class VideoPlayer extends Component {
 
         return(
             <div className="videoPlayer-container">
-                <div className="movieInfo-item-title">TRAILER</div>
+                <div className="movieInfo-item-title">VIDEO</div>
                 <YouTube
                     videoId={this.state.videoId}
                     opts={this.props.opts ? this.props.opts : opts}

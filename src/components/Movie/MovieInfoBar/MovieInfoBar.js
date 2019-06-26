@@ -23,15 +23,15 @@ const convertCurrency = (labelValue) => {
     // Nine Zeroes for Billions
     return Math.abs(Number(labelValue)) >= 1.0e+9
 
-    ? Math.abs(Number(labelValue)) / 1.0e+9 + "B"
+    ? (Math.round((Math.abs(Number(labelValue)) / 1.0e+9) * 100) / 100 ) + "B"
     // Six Zeroes for Millions
     : Math.abs(Number(labelValue)) >= 1.0e+6
 
-    ? Math.abs(Number(labelValue)) / 1.0e+6 + "M"
+    ? (Math.round((Math.abs(Number(labelValue)) / 1.0e+6) * 100) / 100)  + "M"
     // Three Zeroes for Thousands
     : Math.abs(Number(labelValue)) >= 1.0e+3
 
-    ? Math.abs(Number(labelValue)) / 1.0e+3 + "K"
+    ? (Math.round((Math.abs(Number(labelValue)) / 1.0e+3) * 100) / 100)  + "K"
 
     : Math.abs(Number(labelValue));
 

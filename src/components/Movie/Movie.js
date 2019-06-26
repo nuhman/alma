@@ -93,6 +93,7 @@ class Movie extends Component {
                     duration={this.state.movie.runtime} 
                     revenue={this.state.movie.revenue} 
                     budget={this.state.movie.budget}
+                    date={this.state.movie.release_date}
                     />
                 {/* <MovieInfoBar duration={this.state.movie.runtime} 
                             revenue={this.state.movie.revenue} 

@@ -107,7 +107,7 @@ class Home extends Component {
                     });
                 } else if(term === "NOW_PLAYING") {
                     this.setState({
-                        nowPlayingMovies: [...this.state.nowPlayingMovies, ...res.results], // concatenate the existing movies with the results
+                        nowPlayingMovies: [...this.state.nowPlayingMovies, ...res.results.reverse()], // concatenate the existing movies with the results
                         nowPlayingLoading: false, // used to remove spinner gif and instead show the results
                         nowPlayingCurrentPage: res.page, // get the current page of the result
                         nowPlayingTotalPages: res.total_pages // get total pages for results

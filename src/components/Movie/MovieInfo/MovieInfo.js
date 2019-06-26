@@ -61,8 +61,11 @@ const MovieInfo = (props) => {
             <div className="movieInfo-content">
                 <div className="movieInfo-title-genre">
                     <div>{getTitle(props.title,  props.original_title)}</div>
+                    
                     <div className="movieInfo-tagline">{getTagline(props.tagline)}</div>
+                    
                     <div className="movieInfo-genre">{getGenre(props.genres)}</div>
+                    <div className="movieInfo-date">{props.date ? (new Date(props.date)).toDateString() : null}</div>
                 </div>
             </div>
             <div className="movieInfo-imdb">

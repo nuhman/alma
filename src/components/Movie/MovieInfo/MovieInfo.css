@@ -29,6 +29,9 @@
 .movieInfo-tagline{
     font-style: italic;
 }
+.movieInfo-date{
+    margin-bottom: 16px;
+}
 .movieInfo-imdb{
     width: 100%;
 }
