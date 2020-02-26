@@ -5,7 +5,7 @@
   "dependencies": {
     "drag-scroll-provider": "^1.0.6",
     "fs": "0.0.1-security",
-    "react": "^16.8.6",
+    "react": "^16.13.0",
     "react-dom": "^16.8.6",
     "react-flickity-component": "^3.3.0",
     "react-horizontal-scrolling-menu": "^0.6.12",
